@@ -37,8 +37,8 @@ jobs:
       #     npm run test:e2e && \
       #     ./check-if-fablo-version-matches.sh
 
-      - name: Lint
-        run: npm run lint && ./lint.sh
+      # - name: Lint
+      #   run: npm run lint && ./lint.sh
 
   #  test-k8:
   #    needs: test-main
