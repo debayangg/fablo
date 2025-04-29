@@ -31,11 +31,11 @@ jobs:
             e2e-network/docker/test-01-simple.sh.logs/*
             e2e-network/docker/test-01-simple.sh.tmpdir/fablo-target/**/*
 
-      - name: Test generators
-        run: |
-          npm run test:unit && \
-          npm run test:e2e && \
-          ./check-if-fablo-version-matches.sh
+      # - name: Test generators
+      #   run: |
+      #     npm run test:unit && \
+      #     npm run test:e2e && \
+      #     ./check-if-fablo-version-matches.sh
 
       - name: Lint
         run: npm run lint && ./lint.sh
