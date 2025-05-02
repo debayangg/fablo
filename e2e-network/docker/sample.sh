@@ -18,7 +18,7 @@ fi
 
 # Step 4: Start the network
 echo "🚀 Starting Fablo network..."
-fablo up -f "$FABLO_YAML"
+"$FABLO_HOME/fablo.sh" up -f "$FABLO_YAML"
 
 # Step 5: Verify Docker containers
 echo "🔎 Checking running containers..."
