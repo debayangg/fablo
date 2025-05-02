@@ -8,7 +8,7 @@ FABLO_HOME="$TEST_TMP/../../.."
 
 export FABLO_HOME
 
-CONFIG="$FABLO_HOME/samples/sample.yaml"
+FABLO_YAML="$FABLO_HOME/samples/sample.yaml"
 
 # Step 1: Check if config file exists
 if [[ ! -f "$FABLO_YAML" ]]; then
