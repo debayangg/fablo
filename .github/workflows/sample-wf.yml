@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-main:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Build Fablo
+        run: |
+          shellcheck --version && \
+          yamllint -v && \
+          npm install && \
+          npm run build && \
+          ./fablo-build.sh
+
+      - name: Test sample network
+        run: e2e-network/docker/test-01-simple.sh
+
+      - name: Cleanup Docker containers, volumes, and networks
+        if: always()  # Run cleanup even if previous steps fail
+        run: |
+          docker ps -aq | xargs -r docker rm -f
+          docker volume ls -q | xargs -r docker volume rm
+          docker network ls --filter "name=fablo" -q | xargs -r docker network rm

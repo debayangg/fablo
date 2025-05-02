@@ -1,0 +1,26 @@
+network:
+  name: "fablo-sample-network"
+  organizations:
+    - organization: Org1
+      domain: org1.example.com
+      users:
+        - Admin
+      peer:
+        - peer0
+  orderers:
+    - orderer: orderer
+      domain: example.com
+
+channels:
+  - name: mychannel
+    organizations:
+      - Org1
+
+chaincodes:
+  - name: simplekv
+    version: 0.0.1
+    language: go
+    directory: chaincodes/chaincode-go-simple
+    channel: mychannel
+    init: false
+    endorsementPolicy: "OR('Org1.peer')"
