@@ -22,7 +22,7 @@ jobs:
           ./fablo-build.sh
 
       - name: Test sample network
-        run: e2e-network/docker/test-01-simple.sh
+        run: e2e-network/docker/sample.sh
 
       - name: Cleanup Docker containers, volumes, and networks
         if: always()  # Run cleanup even if previous steps fail
