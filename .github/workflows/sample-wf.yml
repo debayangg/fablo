@@ -24,9 +24,10 @@ jobs:
       - name: Test sample network
         run: e2e-network/docker/sample.sh
 
-      - name: Cleanup Docker containers, volumes, and networks
-        if: always()  # Run cleanup even if previous steps fail
-        run: |
-          docker ps -aq | xargs -r docker rm -f
-          docker volume ls -q | xargs -r docker volume rm
-          docker network ls --filter "name=fablo" -q | xargs -r docker network rm
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-05-version3-BFT-snapshot
+          path: |
+            e2e-network/docker/test-05-version3-BFT-snapshot.sh.logs/*
+            e2e-network/docker/test-05-version3-BFT-snapshot.sh.tmpdir/fablo-target/**/*
