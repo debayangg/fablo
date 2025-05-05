@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
+	"log"
 
 	"github.com/hyperledger/fabric-contract-api-go/contractapi"
 )
@@ -102,4 +103,17 @@ func (c *KVContract) VerifyPrivateMessage(ctx contractapi.TransactionContextInte
 		return &Response{Error: "VERIFICATION_FAILED"}, nil
 	}
 	return &Response{Success: "OK"}, nil
+}
+
+func main() {
+	kvContract := new(KVContract)
+
+	chaincode, err := contractapi.NewChaincode(kvContract)
+	if err != nil {
+		log.Panicf("Error creating KVContract chaincode: %v", err)
+	}
+
+	if err := chaincode.Start(); err != nil {
+		log.Panicf("Error starting KVContract chaincode: %v", err)
+	}
 }
